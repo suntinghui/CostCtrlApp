@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="fonts/iconfont.css">
+
+	<style>
+		.mui-content{padding:0 1.6rem;}
+		.mui-input-group{background:none;}
+		.mui-input-row label{width:15%; line-height:1.6;}
+
+		.mui-input-row label~input, .mui-input-row label~select, .mui-input-row label~textarea{width:85%;}
+		.mui-input-group .mui-input-row{height:60px;}
+		input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea{height:60px;}
+		.mui-table-view{background:none; height:60px;}
+		.mui-table-view-cell{padding:19px 15px;}
+
+	</style>
+
+</head>
+<body>
+
+		<div class="mui-content">
+			<div class="mui-text-center" style="padding: 3rem 0;"><img src="img/logo.png" style="width: 25%; max-width:90px;" alt=""></div>
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label><i class="iconfont icon-zhanghao color-primary" style="font-size:24px;"></i></label>
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+				</div>
+				<div class="mui-input-row">
+					<label><i class="iconfont icon-mima color-primary" style="font-size:24px;"></i></label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+			</form>
+
+			<ul class="mui-table-view">
+
+				<li class="mui-table-view-cell">
+					保存密码
+					<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+
+			</ul>
+
+			<div class="mui-content-padded" style="padding-top: 2rem;">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+			</div>
+		</div>
+		<div class="mui-page-footer mui-text-center color-gray">中建东方装饰有限公司</div>
+
+		<script type="text/javascript" charset="utf-8">
+            mui.init();
+		</script>
+</body>
+</html>

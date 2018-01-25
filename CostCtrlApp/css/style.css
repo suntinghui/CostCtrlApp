@@ -1,0 +1,16 @@
+.color-primary{color:#44a8ec;}
+.color-gray{ color:#999;}
+.mui-switch-blue.mui-active{
+border: 2px solid #44a8ec;
+background-color: #44a8ec;
+}
+.mui-btn-blue, .mui-btn-primary, input[type=submit]{
+color: #fff;
+border: 1px solid #44a8ec;
+background-color: #44a8ec;
+}
+.mui-btn-block{padding:10px 0;}
+.mui-page-footer{ width:100%;position:fixed; bottom:0; height:40px; line-height:40px;}
+.mui-bar{background:#44a8ec; -webkit-box-shadow:0px;-moz-box-shadow:0px;box-shadow:0px;}
+.mui-title,.mui-bar .mui-icon{ color:#fff;}
+.mui-search .mui-placeholder,input[type=search]{-webkit-border-radius:50px;-moz-border-radius:50px;border-radius:50px;}
