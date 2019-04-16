@@ -1,0 +1,85 @@
+
+.mui-bar{
+	background-color: #44A7EB;
+}
+
+.mui-title{
+	color: #fff;
+}
+
+.mui-search input[type=search]{
+	border-radius: 20px;
+	color: #000;
+}
+
+.mui-table-view-cell:after{
+	background-color: #e9e9e9;
+	left: 0;
+}
+.mui-table-view-cell:last-child:after, .mui-table-view-cell:last-child:before{
+	height: 1px;
+}
+.mui-table-view:before,.mui-table-view:after{
+	background: none;
+}
+.title{
+	color: #999;
+	font-size: 14px;
+}
+.mui-grid-view.mui-grid-9{
+	background-color: #fff;
+}
+.mui-grid-view.mui-grid-9:after, .mui-grid-view.mui-grid-9:before{
+	display:none;
+}
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+	font-size: 12px;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+	border-right: 1px solid #f0f0f0;
+	border-bottom: 1px solid #f0f0f0;
+}
+.mui-switch-blue.mui-active{
+    border: 2px solid #43A7EB;
+    background-color: #43A7EB;
+}
+.mui-bar a, button, input{
+	color: #fff;
+}
+
+.mui-btn-block{
+	padding: 10px 0;
+}
+.mui-btn-blue, .mui-btn-primary, input[type=submit]{
+	color: #fff;
+    border: 1px solid #43A7EB;
+    background-color: #43A7EB;
+}
+.mui-input-group .mui-input-row:after,.mui-input-group:after,.mui-input-group:before{
+	background-color: #f0f0f0;
+}
+.mui-card{
+	box-shadow: none;
+}
+.mui-card-footer:before, .mui-card-header:after{
+	background-color: #f0f0f0;
+}
+.mui-card-content-inner{
+	padding: 10px 15px;
+}
+.mui-card-header{
+	font-size: 14px;
+}
+
+input, select, textarea,.mui-input-row select{
+	font-size: 14px;
+}
+.mui-input-row label{
+	padding: 12px 15px;
+	padding-left: 0;
+}
+.mui-input-group .mui-input-row:after{
+	left: 0;
+}
+
+

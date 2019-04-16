@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>新建入库单</title>
+		
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link href="../css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../css/typography.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+		<style>
+			.icon-calendar{
+				position: absolute; top:10px; right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">新建入库单</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab" style="background: #fff; box-shadow: none;">
+			<a class="mui-tab-item" href="#">
+				<span class="mui-tab-label"><i class="fa fa-times-circle-o" aria-hidden="true"></i> 放弃</span>
+			</a>
+			<a class="mui-tab-item" href="#">
+				<span class="mui-tab-label"><i class="fa fa-floppy-o" aria-hidden="true"></i> 保存</span>
+			</a>
+			<a class="mui-tab-item" href="#">
+				<span class="mui-tab-label"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> 下一步</span>
+			</a>
+			<a class="mui-tab-item" href="#">
+				<span class="mui-tab-label"><i class="fa fa-check-circle-o" aria-hidden="true"></i> 提交</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div class="bg-white p-10">
+				<img src="../images/img-add-setp04.png" width="100%" alt="" />
+			</div>
+			<div class="bg-white mb-10">
+				<div class="mui-content-padded">
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<label style="width: 100%; font-weight: bold;">1.上传附件（初始）</label>
+						</div> 
+						<div class="mui-input-row">
+							<label>文档编码</label>
+							<p class="mt-10">UTF-8</p>
+						</div> 
+						<div class="mui-input-row">
+							<label>文档类型</label>
+							<p class="mt-10">doc</p>
+						</div>
+						<div class="mui-input-row">
+							<label>文件大小</label>
+							<p class="mt-10">11KB</p>
+						</div>
+						<div class="mui-input-row">
+							<label>文档编写人</label>
+							<p class="mt-10">张三</p>
+						</div>
+						<div class="mui-input-row">
+							<label>上传时间</label>
+							<p class="mt-10">2017-09-10  19:10:45</p>
+						</div>
+						<div class="mui-input-row">
+							<label>备注</label>
+							<p class="mt-10">-</p>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="bg-white mb-10">
+				<div class="mui-content-padded">
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<label style="width: 100%; font-weight: bold;">2.CLZLJH-201612-0004  螺纹钢</label>
+						</div> 
+						<div class="mui-input-row">
+							<label>规格</label>
+							<input type="text" placeholder="请输入规格">
+						</div> 
+						<div class="mui-input-row">
+							<label>型号</label>
+							<input type="text" placeholder="请输入型号">
+						</div>
+						<div class="mui-input-row">
+							<label>材质</label>
+							<input type="text" placeholder="请输入材质">
+						</div>
+						<div class="mui-input-row">
+							<label>单位</label>
+							<input type="text" placeholder="请输入单位">
+						</div>
+						<div class="mui-input-row">
+							<label>部位全名称</label>
+							<input type="text" placeholder="请输入部位全名称">
+						</div>
+						<div class="mui-input-row">
+							<label>计划数量</label>
+							<input type="text" placeholder="请输入计划数量">
+						</div>
+						<div class="mui-input-row">
+							<label>耗损率</label>
+							<input type="text" placeholder="请输入耗损率">
+						</div>
+						<div class="mui-input-row">
+							<label>是否存在调整</label>
+							<select class="mui-btn mui-btn-block" style="width: 65%; padding: 0;">
+								<option value="item-1">是</option>
+								<option value="item-2">否</option>
+							</select>
+						</div>
+						<div class="mui-input-row">
+							<label>投标预算量</label>
+							<input type="text" placeholder="请输入投标预算量">
+						</div>
+						<div class="mui-input-row">
+							<label>备注</label>
+							<input type="text" placeholder="请输入备注">
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script>
+			mui.init();
+
+			
+		</script>
+		
+	</body>
+</html>

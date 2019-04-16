@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>new webview</title>
+		
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/typography.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">待办事项</h1>
+			<a class="mui-icon mui-icon-plusempty mui-pull-right" id="addItem" style="color: #fff;"></a>
+		</header>
+		<div class="mui-content">
+			<div class="p-10 pb-0 bg-white">
+				<!--搜索-->
+				<div class="mui-input-row mui-search">
+					<input type="search" class="mui-input-clear" placeholder="请输入姓名/电话/部门">
+				</div>
+				<!--搜索-->
+				
+			</div>
+			<div class="mui-card m-0 mb-10">
+				<div class="mui-card-header">送交人：张三</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<div>拟稿时间：2017-09-10</div>
+					<div>类型：发文</div>
+				</div>
+			</div>
+			<div class="mui-card m-0 mb-10">
+				<div class="mui-card-header">送交人：张三</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						包含页眉页脚的卡片，页眉常用来显示面板标题，页脚用来显示额外信息或支持的操作（比如点赞、评论等）
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<div>拟稿时间：2017-09-10</div>
+					<div>类型：发文</div>
+				</div>
+			</div>
+			
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init();
+			
+			document.getElementById('addItem').addEventListener('tap', function() {
+					
+			  //打开列表页面
+			  mui.openWindow({
+			    url: 'add-item-step01.html', 
+			    id:'addItem'
+			  });
+			});
+			
+		</script>
+	</body>
+</html>
