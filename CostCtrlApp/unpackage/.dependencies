@@ -1,1 +1,74 @@
-null
+{
+  "html/add-item-step01.html": {
+    "href": "html/add-item-step01.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/mui.picker.min.css",
+      "css/font-awesome.min.css",
+      "fonts/fontawesome-webfont.eot",
+      "fonts/fontawesome-webfont.woff2",
+      "fonts/fontawesome-webfont.woff",
+      "fonts/fontawesome-webfont.ttf",
+      "fonts/fontawesome-webfont.svg",
+      "css/typography.css",
+      "css/app.css",
+      "js/mui.min.js",
+      "js/mui.picker.min.js",
+      "images/img-add-setp01.png"
+    ],
+    "priority": 0
+  },
+  "html/todo-lists.html": {
+    "href": "html/todo-lists.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/typography.css",
+      "css/app.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "html/tab-webview-homepage.html": {
+    "href": "html/tab-webview-homepage.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/util.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/typography.css",
+      "css/app.css",
+      "images/icon-notice.png",
+      "images/icon-todo.png",
+      "images/icon-warning.png",
+      "images/icon-task.png"
+    ],
+    "refer": [
+      "html/todo-lists.html"
+    ],
+    "priority": 0
+  },
+  "html/login.html": {
+    "href": "html/login.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/font-awesome.min.css",
+      "fonts/fontawesome-webfont.eot",
+      "fonts/fontawesome-webfont.woff2",
+      "fonts/fontawesome-webfont.woff",
+      "fonts/fontawesome-webfont.ttf",
+      "fonts/fontawesome-webfont.svg",
+      "css/typography.css",
+      "css/app.css",
+      "js/mui.min.js",
+      "images/img-avatar-defult.png"
+    ],
+    "refer": [
+      "html/tab-webview-homepage.html"
+    ],
+    "priority": 0
+  }
+}

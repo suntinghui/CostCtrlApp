@@ -78,11 +78,66 @@
   "html/tab-webview-account.html": {
     "refer": [
       "html/account-edit-password.html"
-    ]
+    ],
+    "resources": []
   },
   "html/todo-lists.html": {
     "refer": [
       "html/add-item-step01.html"
+    ],
+    "resources": [
+      "css/mui.min.css",
+      "css/typography.css",
+      "css/app.css",
+      "js/mui.min.js"
     ]
+  },
+  "html/add-item-step01.html": {
+    "href": "html/add-item-step01.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/mui.picker.min.css",
+      "css/font-awesome.min.css",
+      "css/typography.css",
+      "css/app.css",
+      "js/mui.min.js",
+      "js/mui.picker.min.js",
+      "images/img-add-setp01.png"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "html/tab-webview-homepage.html": {
+    "href": "html/tab-webview-homepage.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/util.js",
+      "css/mui.min.css",
+      "css/typography.css",
+      "css/app.css",
+      "images/icon-notice.png",
+      "images/icon-todo.png",
+      "images/icon-warning.png",
+      "images/icon-task.png"
+    ],
+    "refer": [
+      "html/todo-lists.html"
+    ],
+    "priority": 0
+  },
+  "html/login.html": {
+    "href": "html/login.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/font-awesome.min.css",
+      "css/typography.css",
+      "css/app.css",
+      "js/mui.min.js",
+      "images/img-avatar-defult.png"
+    ],
+    "refer": [
+      "html/tab-webview-homepage.html"
+    ],
+    "priority": 0
   }
 }
