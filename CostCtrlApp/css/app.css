@@ -83,3 +83,6 @@ input, select, textarea,.mui-input-row select{
 }
 
 
+.mui-bar-tab .mui-tab-item.mui-active{
+	color: #44A7EB;
+}
