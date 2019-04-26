@@ -12,20 +12,21 @@
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 	<style>
-
-		.mui-table-view:before,.mui-table-view:after{
+		.mui-table-view:before,
+		.mui-table-view:after {
 			background-color: #f0f0f0;
 		}
-		.mui-table-view .mui-media-object{
-			line-height: 30px;
-		    max-width: 30px;
-		    height: 30px
-		}
 		
+		.mui-table-view .mui-media-object {
+			line-height: 30px;
+			max-width: 30px;
+			height: 30px
+		}
 	</style>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
-		    <h1 class="mui-title">通讯录</h1>
+			<h1 class="mui-title">通讯录</h1>
 		</header>
 		<div class="mui-content bg-white">
 			<div class="mui-content-padded pb-0">
@@ -53,9 +54,9 @@
 					</li>
 				</ul>
 				<div class="title pt-5 pb-5 pl-10" style="background-color: #EFEFF4; margin: 0 -10px;">最近联系人</div>
-				<ul class="mui-table-view">
+				<ul class="mui-table-view" id="list">
 					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
+						<a href="javascript:;" >
 							<img class="mui-media-object mui-pull-left" src="../images/icon-contact-girl.png">
 							<div class="mui-media-body pt-5">
 								艾米
@@ -63,7 +64,7 @@
 						</a>
 					</li>
 					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
+						<a href="javascript:;" >
 							<img class="mui-media-object mui-pull-left" src="../images/icon-contact-boy.png">
 							<div class="mui-media-body pt-5">
 								皮特
@@ -72,13 +73,27 @@
 					</li>
 				</ul>
 			</div>
-			
+
 		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui('#list').on('tap', 'li', function(e) {
+				mui.plusReady(function() {
+					var subpage_style = {
+						top: '0px',
+						bottom: '0px'
+					};
+
+					var self = plus.webview.currentWebview();
+					var sub = plus.webview.create('contact-detail.html', 'contact-detail.html', subpage_style);
+					self.append(sub);
+				});
+
+			});
+			
+		</script>
+
 	</body>
-	<script src="../js/mui.min.js"></script>
-	<script>
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
-	</script>
+
 </html>
