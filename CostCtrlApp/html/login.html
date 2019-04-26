@@ -77,11 +77,23 @@
 			mui.init();
 			
 			document.getElementById('loginBtn').addEventListener('tap', function(){
-				 mui.openWindow({
-				    url: 'tab-webview-homepage.html', 
-				    id:'tab-webview-homepage'
-				  });
+				 openMainPage();
 			}, false);
+			
+			function openMainPage() {
+				mui.openWindow({
+					url: 'main.html',
+					id: "main.html", // 该id在刷新上有使用，不可更改
+					preload: true,
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: true, //自动显示等待框，默认为true
+						title: '正在登录...',
+					}
+				});
+			}
 			
 		</script>
 	</body>

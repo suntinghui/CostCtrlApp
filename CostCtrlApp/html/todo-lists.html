@@ -54,6 +54,13 @@
 		<script>
 			mui.init();
 			
+			mui.back = function() {
+				mui.plusReady(function() {
+					var self = plus.webview.currentWebview();
+					self.close();
+				})
+			};
+			
 			document.getElementById('addItem').addEventListener('tap', function() {
 					
 			  //打开列表页面
