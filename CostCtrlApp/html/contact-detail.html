@@ -6,23 +6,58 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<link href="../css/typography.css" rel="stylesheet" />
+		<link href="../css/app.css" rel="stylesheet" />
+
 	</head>
 
 	<body>
 
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">详情</h1>
+			<h1 class="mui-title">联系人详情</h1>
 			<a class="mui-icon mui-icon-plusempty mui-pull-right" id="addItem" style="color: #fff;"></a>
 		</header>
 		<div class="mui-content">
-
+			<ul class="mui-table-view mt-0 contact-list">
+				<li class="mui-table-view-cell">
+					<div class="contact-item-icon"><i class="fa fa-user"></i></div>
+					<p class="contact-item-main pl-10">个人姓名</p>
+					<p class="contact-item-desc">傅小小</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="contact-item-icon"><i class="fa fa-phone"></i></div>
+					<p class="contact-item-main pl-10">手机号</p>
+					<p class="contact-item-desc"><a href="tel:186330300000" style="color: #626262;">186330300000</a></p>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="contact-item-icon"><i class="fa fa-wechat"></i></div>
+					<p class="contact-item-main pl-10">微信</p>
+					<p class="contact-item-desc">afasdfa</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="contact-item-icon"><i class="fa fa-qq"></i></div>
+					<p class="contact-item-main pl-10">QQ</p>
+					<p class="contact-item-desc">3234234</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="contact-item-icon"><i class="fa fa-envelope"></i></div>
+					<p class="contact-item-main pl-10">电子邮件</p>
+					<p class="contact-item-desc">aaaaa@qq.com</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="contact-item-icon"><i class="fa fa-file-text"></i></div>
+					<p class="contact-item-main pl-10">备注</p>
+					<p class="contact-item-desc">这里是一段长文字备注，特别长长长长长长长长长长长长长长长长长长长长长长长长长长长长</p>
+				</li>
+			</ul>
 		</div>
 
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
-			
+
 			mui.back = function() {
 				mui.plusReady(function() {
 					var self = plus.webview.currentWebview();

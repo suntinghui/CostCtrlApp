@@ -86,3 +86,21 @@ input, select, textarea,.mui-input-row select{
 .mui-bar-tab .mui-tab-item.mui-active{
 	color: #44A7EB;
 }
+
+.contact-list li{
+	display: flex;
+}
+.contact-list .contact-item-main{
+	flex-grow:1;
+}
+.contact-list .contact-item-icon{
+	color: #999;
+}
+.contact-list .contact-item-desc{
+	width: 70%;
+	text-align: right;
+	word-wrap:break-word;
+}
+.contact-list .mui-table-view-cell{
+	padding: 25px 15px;
+}
