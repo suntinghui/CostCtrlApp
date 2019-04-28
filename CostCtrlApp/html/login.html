@@ -44,17 +44,17 @@
 				<div class="mui-input-group mt-50" style="background: none;">
 					<div class="mui-input-row">
 						<label><i class="fa fa-user" aria-hidden="true"></i></label>
-						<input type="text" placeholder="请输入账号">
+						<input type="text" id="userNameText" placeholder="请输入账号">
 					</div>
 					<div class="mui-input-row">
 						<label><i class="fa fa-lock" aria-hidden="true"></i></label>
-						<input type="password" placeholder="请输入密码">
+						<input type="password" id="passwordText" placeholder="请输入密码">
 					</div>
 				</div>
 				<div class="mui-row mui-text-center mt-20">
 			        <div class="mui-col-sm-6 mui-col-xs-6">
 			            <div class="mui-input-row mui-checkbox mui-left">
-						  <label style="width: 100%; font-size: 17px; color: #000; text-align: left;">自动登录</label>
+						  <label style="width: 100%; font-size: 17px; color: #000; text-align: left;">记住密码</label>
 						  <input name="checkbox1" value="Item 1" type="checkbox">
 						</div>
 			        </div>
@@ -68,17 +68,113 @@
 			    <div class="mui-button-row p-10">
 					<button type="button" id="loginBtn" class="mui-btn mui-btn-primary mui-btn-block">登录</button>
 				</div>
+				
+				<div class="link-area p-10" style="display: none;">
+					<a id='setIP' style="color: #4A87B6;font-size: 16px;font-family:'微软雅黑';">设置机构</a>
+				</div>
 				    
 			</div>
 			
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/constants.js" ></script>
+		<script type="text/javascript" src="../js/util.js" ></script>
+		<script type="text/javascript" src="../js/view.js" ></script>
+		
 		<script>
 			mui.init();
 			
-			document.getElementById('loginBtn').addEventListener('tap', function(){
-				 openMainPage();
+			var userNameText = document.getElementById("userNameText");
+			var passwordText = document.getElementById("passwordText");
+			var loginBtn = document.getElementById("loginBtn");
+			
+			loginBtn.addEventListener("tap", function(event) {
+				loginReq();
 			}, false);
+
+			var checkInput = function() {
+				if(userNameText.value.length == 0) {
+					mui.toast("请输入用户名");
+					return false;
+				}
+
+				if(passwordText.value.length == 0) {
+					mui.toast("请输入密码");
+					return false;
+				}
+
+				return true;
+			}
+
+			var loginReq = function() {
+				checkNetwork();
+
+				if(!checkInput())
+					return;
+
+				mui.plusReady(function() {
+					showProgressDialog("正在登录...");
+
+					var pushInfo = plus.push.getClientInfo();
+					var clientid = pushInfo.clientid;
+
+					var argus = "&loginName=" + userNameText.value + "&passWork=" + passwordText.value + "&deviceId=" + plus.device.uuid + "&clientid=" + clientid;
+					var url = getHost() + "mobileApi.ashx?action=WapAuthIdentity" + argus;
+					console.log(url);
+
+					mui.ajax(url, {
+						dataType: 'json',
+						type: 'get',
+						timeout: TIMEOUT,
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success: function(data) {
+							hideProgressDialog();
+
+							responseLogin(data);
+						},
+						error: function(xhr, type, errorThrown) {
+							hideProgressDialog();
+
+							mui.toast(getHttpErrorDesp(type));
+						}
+					});
+				});
+
+			} // end loginReq
+
+			function responseLogin(resp) {
+				console.log('登录响应：' + JSON.stringify(resp));
+
+				switch(resp.RSTSIGN - 0) {
+					case 1: // 登录成功
+						// 保存用户信息
+						window.localStorage.setItem(TokenKey, "");
+						window.localStorage.setItem(UserName, resp.msLoginUser.posName);
+						window.localStorage.setItem(LoginName, "");
+						window.localStorage.setItem(PwdCyp, "");
+						window.localStorage.setItem(EmpId, resp.msLoginUser.userId);
+                        window.localStorage.setItem(DEPNAME, resp.msLoginUser.deptName);
+						// 保存登录用户名
+						window.localStorage.setItem(SaveUserName, userNameText.value);
+						window.localStorage.setItem(CheckSavePwd, savepwd.checked);
+						window.localStorage.setItem(CheckAutoLogin, autologin.checked);
+						if(savepwd.checked) {
+							window.localStorage.setItem(SavePwd, passwordText.value);
+						} else {
+							window.localStorage.setItem(SavePwd, '');
+						}
+
+						openMainPage();
+
+						break;
+
+					default:
+						mui.alert(resp.RSTMSG, "提示", null);
+						break;
+				}
+			}
 			
 			function openMainPage() {
 				mui.openWindow({

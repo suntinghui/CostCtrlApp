@@ -1,10 +1,6 @@
-var DEFAULT_HOST = 'app.crbcint.com:80';
+var DEFAULT_HOST = '47.104.89.112:802';
 var PM_WEBSERVICE_URL = 'http://pm2.crbcint.com:8091/flowwebservice/services/flowWebservice?wsdl';
 var FUND_WEBSERVICE_URL = 'http://app.crbcint.com:80/MobileOffice/';
-
-//var DEFAULT_HOST = 'app.crbcint.com:89';
-//var PM_WEBSERVICE_URL = 'http://pm2.crbcint.com:8091/flowwebservice/services/flowWebservice?wsdl';
-//var FUND_WEBSERVICE_URL = 'http://app.crbcint.com:89/MobileOffice/';
 
 function getLocalStoreageHost() {
 	var host = window.localStorage.getItem(SET_HOST);
@@ -16,7 +12,7 @@ function getLocalStoreageHost() {
 
 function getHost() {
 	var host = getLocalStoreageHost();
-	return 'http://' + host + '/MobileOffice/';
+	return 'http://' + host + '/oamulti/BLL/';
 }
 
 var SET_HOST = 'SET_HOST';
