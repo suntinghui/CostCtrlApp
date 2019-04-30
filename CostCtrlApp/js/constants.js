@@ -12,7 +12,7 @@ function getLocalStoreageHost() {
 
 function getHost() {
 	var host = getLocalStoreageHost();
-	return 'http://' + host + '/oamulti/BLL/';
+	return 'http://' + host + '/oamulti/BLL/mobileApi.ashx?';
 }
 
 var SET_HOST = 'SET_HOST';

@@ -15,6 +15,10 @@ function exReturnSpace(str) {
 	return str;
 }
 
+function getTimestamp() {
+	return (new Date()).getTime(); 
+}
+
 // 得到今天日期yyyy-MM-dd
 function getyyyyMMdd(date) {
 	var seperator1 = "-";

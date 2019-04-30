@@ -12,107 +12,95 @@
 		<link href="../css/app.css" rel="stylesheet" />
 	</head>
 
-
 	<body>
 		<header class="mui-bar mui-bar-nav">
-		    <h1 class="mui-title">工作台</h1>
-		    <a class="mui-icon mui-icon-gear mui-pull-right" style="color: #fff;"></a>
+			<h1 class="mui-title">工作台</h1>
+			<a class="mui-icon mui-icon-gear mui-pull-right" style="color: #fff;"></a>
 		</header>
 		<div class="mui-content">
 			<img src="../images/img-banner.png" width="100%" alt="" />
-			<div class="title pl-10">分类1</div>
-			<ul class="mui-table-view mui-grid-view mui-grid-9">
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-lcsp.png" height="30"/>
-	                    <div class="mui-media-body">流程审批</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-rkd.png" height="30"/>
-	                    <div class="mui-media-body">入库单</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-ckd.png" height="30"/>
-	                    <div class="mui-media-body">出库单</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-htsp.png" height="30"/>
-	                    <div class="mui-media-body">合同审批</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-tzgg.png" height="30"/>
-	                    <div class="mui-media-body">通知公告</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-edyj.png" height="30"/>
-	                    <div class="mui-media-body">额度预警</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-dbwj.png" height="30"/>
-	                    <div class="mui-media-body">待办文件</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-xrw.png" height="30"/>
-	                    <div class="mui-media-body">新任务</div></a></li>
-	        </ul>
-	        <div class="title pl-10 pt-10">分类2</div>
-	        <ul class="mui-table-view mui-grid-view mui-grid-9">
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-zkjh.png" height="30"/>
-	                    <div class="mui-media-body">总控计划</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-fksq.png" height="30"/>
-	                    <div class="mui-media-body">付款申请</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-thd.png" height="30"/>
-	                    <div class="mui-media-body">退货单</div></a></li>
-	            <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"><a href="#">
-	                    <img src="../images/icon-xyjh.png" height="30"/>
-	                    <div class="mui-media-body">需用计划</div></a></li>
-	        </ul>
+
+			<div id="menudiv">
+			</div>
 		</div>
-		<script src="../js/mui.min.js"></script>
+
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/constants.js"></script>
+		<script type="text/javascript" src="../js/view.js"></script>
+		<script type="text/javascript" src="../js/util.js"></script>
+
 		<script>
-			mui.init({
-				swipeBack: false,
-				pullRefresh: {
-					container: '#pullrefresh',
-					down: {
-						style:'circle',
-						callback: pulldownRefresh
-					},
-					up: {
-						contentrefresh: '正在加载...',
-						callback: pullupRefresh
-					}
-				}
+			mui.plusReady(function() {
+
 			});
-			/**
-			 * 下拉刷新具体业务实现
-			 */
-			function pulldownRefresh() {
-				setTimeout(function() {
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for(var i = cells.length, len = i + 3; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						//下拉刷新，新纪录插到最前面；
-						table.insertBefore(li, table.firstChild);
+
+			window.onload = function() {
+				requestMenu();
+			};
+
+			function requestMenu() {
+				checkNetwork();
+
+				showProgressDialog("正在加载...");
+
+				var url = getHost() + "action=WapsetFixedMenu";
+				mui.ajax(url, {
+					dataType: 'json',
+					type: 'post',
+					timeout: TIMEOUT,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						"random": getTimestamp()
+					},
+					success: function(data) {
+						hideProgressDialog();
+						responseMenu(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						hideProgressDialog();
+
+						mui.toast(getHttpErrorDesp(type));
 					}
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
-					mui.toast('下拉刷新成功');
-				}, 1000);
+				});
 			}
-			var count = 0;
-			/**
-			 * 上拉加载具体业务实现
-			 */
-			function pullupRefresh() {
-				setTimeout(function() {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-					var table = document.body.querySelector('.mui-table-view');
-					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-					for(var i = cells.length, len = i + 20; i < len; i++) {
-						var li = document.createElement('li');
-						li.className = 'mui-table-view-cell';
-						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
-						table.appendChild(li);
+
+			function responseMenu(resp) {
+				console.log(JSON.stringify(resp));
+
+				var groupMap = {};
+				// 先对组建立map结构
+				for(var i = 0; i < resp.msGroup.length; i++) {
+					var group = resp.msGroup[i];
+					groupMap[group.val] = [];
+				}
+				// 对功能模块进行按组分类
+				for(var i = 0; i < resp.msPlate.length; i++) {
+					var menu = resp.msPlate[i];
+					groupMap[menu.groupTitle].push(menu);
+				}
+
+				console.log("整理菜单结构：" + JSON.stringify(groupMap));
+
+				var menudiv = document.getElementById("menudiv");
+				menudiv.innerHTML = "";
+
+				Object.keys(groupMap).forEach(function(key) {
+					menudiv.innerHTML += '<div class="title pl-10">' + key + '</div>';
+					
+					menudiv.innerHTML += '<ul class="mui-table-view mui-grid-view mui-grid-9">';
+					for (var i=0; i<groupMap[key].length; i++) {
+						var menu = groupMap[key][i];
+						menudiv.innerHTML += '<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">';
+						menudiv.innerHTML += '<a href="#">';
+						menudiv.innerHTML += '<img src="../images/icon-lcsp.png" height="30" />';
+						menudiv.innerHTML += '<div class="mui-media-body"></div>';
+						menudiv.innerHTML += '</a></li>';
 					}
-				}, 1000);
+					menudiv.innerHTML += '</ul>';
+				});
+								
 			}
 		</script>
 	</body>
