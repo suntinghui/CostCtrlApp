@@ -4,14 +4,14 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>登录</title>
-		
+
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/font-awesome.min.css" rel="stylesheet" />
 		<link href="../css/typography.css" rel="stylesheet" />
 		<link href="../css/app.css" rel="stylesheet" />
 		<style type="text/css">
 			body,.mui-content{
-				background: #F7F7F9;
+				background: #fff;
 			}
 			.mui-input-row label{
 				width: 20%;
@@ -29,7 +29,9 @@
 				height: 60px;
 				padding-top: 10px;
 			}
-		
+			.mui-input-group .mui-input-row:after, .mui-input-group:after, .mui-input-group:before{
+				background:#ddd;
+			}
 		</style>
 	</head>
 	<body>
@@ -59,35 +61,37 @@
 						</div>
 			        </div>
 			        <div class="mui-col-sm-6 mui-col-xs-6">
-			            <div class="mui-input-row p-10 mui-text-right">
-						  <a style="width: 100%; font-size: 17px;   color:#43A8EC;">忘记密码</a>
-
-						</div>
+								<div class="mui-input-row">
+									<label style="width: 100%; font-size: 17px; color: #000; text-align: right; padding-right: 75px;">自动登录</label>
+									<div class="mui-switch mui-switch-mini mui-switch-blue" style="position: absolute; top: 0; right: 0; margin-top: 0;">
+										<div class="mui-switch-handle"></div>
+									</div>
+								</div>
 			        </div>
 			    </div>
 			    <div class="mui-button-row p-10">
 					<button type="button" id="loginBtn" class="mui-btn mui-btn-primary mui-btn-block">登录</button>
 				</div>
-				
+
 				<div class="link-area p-10" style="display: none;">
 					<a id='setIP' style="color: #4A87B6;font-size: 16px;font-family:'微软雅黑';">设置机构</a>
 				</div>
-				    
+
 			</div>
-			
+
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/constants.js" ></script>
 		<script type="text/javascript" src="../js/util.js" ></script>
 		<script type="text/javascript" src="../js/view.js" ></script>
-		
+
 		<script>
 			mui.init();
-			
+
 			var userNameText = document.getElementById("userNameText");
 			var passwordText = document.getElementById("passwordText");
 			var loginBtn = document.getElementById("loginBtn");
-			
+
 			loginBtn.addEventListener("tap", function(event) {
 				loginReq();
 			}, false);
@@ -175,7 +179,7 @@
 						break;
 				}
 			}
-			
+
 			function openMainPage() {
 				mui.openWindow({
 					url: 'main.html',
@@ -190,7 +194,7 @@
 					}
 				});
 			}
-			
+
 		</script>
 	</body>
 </html>
