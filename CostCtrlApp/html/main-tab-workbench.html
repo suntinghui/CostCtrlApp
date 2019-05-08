@@ -84,23 +84,24 @@
 				console.log("整理菜单结构：" + JSON.stringify(groupMap));
 
 				var menudiv = document.getElementById("menudiv");
-				menudiv.innerHTML = "";
-
+				var htmlStr = "";
+				
 				Object.keys(groupMap).forEach(function(key) {
-					menudiv.innerHTML += '<div class="title pl-10">' + key + '</div>';
+					htmlStr += '<div class="title pl-10">' + key + '</div>';
 					
-					menudiv.innerHTML += '<ul class="mui-table-view mui-grid-view mui-grid-9">';
+					htmlStr += '<ul class="mui-table-view mui-grid-view mui-grid-9">';
 					for (var i=0; i<groupMap[key].length; i++) {
 						var menu = groupMap[key][i];
-						menudiv.innerHTML += '<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">';
-						menudiv.innerHTML += '<a href="#">';
-						menudiv.innerHTML += '<img src="../images/icon-lcsp.png" height="30" />';
-						menudiv.innerHTML += '<div class="mui-media-body"></div>';
-						menudiv.innerHTML += '</a></li>';
+						htmlStr += '<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">';
+						htmlStr += '<a href="#">';
+						htmlStr += '<img src="'+menu.BackImage+'" height="30" />';
+						htmlStr += '<div class="mui-media-body"> '+menu.PlateName+'</div>';
+						htmlStr += '</a></li>';
 					}
-					menudiv.innerHTML += '</ul>';
+					htmlStr += '</ul>';
 				});
-								
+				
+				menudiv.innerHTML = htmlStr;
 			}
 		</script>
 	</body>

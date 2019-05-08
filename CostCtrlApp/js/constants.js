@@ -25,11 +25,8 @@ var MAX_PAGE_SIZE = 19860727;
 // 下面是LocalStorage key
 var TokenKey = "TokenKey";
 var UserName = "UserName";
-var LoginName = "LoginName";
-var PwdCyp = "PwdCyp";
-var EmpId = 'EmpId';
-//部门名称2018-06-04 by LJT
-var DEPNAME="DepName";
+var UserId = "UserId";
+var DeptId = 'DeptId';
 
 var SaveUserName = 'SaveUserName';
 var SavePwd = 'SavePwd';

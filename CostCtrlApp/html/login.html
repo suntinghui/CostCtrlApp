@@ -155,11 +155,10 @@
 					case 1: // 登录成功
 						// 保存用户信息
 						window.localStorage.setItem(TokenKey, "");
-						window.localStorage.setItem(UserName, resp.msLoginUser.posName);
-						window.localStorage.setItem(LoginName, "");
-						window.localStorage.setItem(PwdCyp, "");
-						window.localStorage.setItem(EmpId, resp.msLoginUser.userId);
-                        window.localStorage.setItem(DEPNAME, resp.msLoginUser.deptName);
+						window.localStorage.setItem(UserName, resp.msLoginUser.userName);
+						window.localStorage.setItem(UserId, resp.msLoginUser.userId);
+						window.localStorage.setItem(DeptId, resp.msLoginUser.deptId);
+                        
 						// 保存登录用户名
 //						window.localStorage.setItem(SaveUserName, userNameText.value);
 //						window.localStorage.setItem(CheckSavePwd, savepwd.checked);

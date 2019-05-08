@@ -66,21 +66,72 @@
 			</div>
 
 		</div>
-		<script src="../js/mui.min.js"></script>
+		
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/constants.js"></script>
+		<script type="text/javascript" src="../js/view.js"></script>
+		<script type="text/javascript" src="../js/util.js"></script>
+		
 		<script>
 			mui.init({
 				swipeBack: false
 			});
-			mui.plusReady(function() {
-
-			});
+			
 			document.getElementById('editPassword').addEventListener('tap', function() {
 				//打开修改密码页面
-				mui.openWindow({
-					url: 'account-edit-password.html',
-					id: 'editPassword'
+				mui.plusReady(function() {
+					var subpage_style = {
+						top: '0px',
+						bottom: '0px'
+					};
+
+					var self = plus.webview.currentWebview();
+					var sub = plus.webview.create('account-edit-password.html', 'account-edit-password.html', subpage_style);
+					self.append(sub);
 				});
 			});
+		</script>
+		
+		<script>
+			
+			window.onload = function() {
+				requestAccountInfo();
+			};
+			
+			function requestAccountInfo() {
+				checkNetwork();
+				
+				showProgressDialog("正在加载...");
+
+				var url = getHost() + "action=WapGetPlateList";
+				mui.ajax(url, {
+					dataType: 'json',
+					type: 'post',
+					timeout: TIMEOUT,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						"random": getTimestamp()
+					},
+					success: function(data) {
+						hideProgressDialog();
+						
+						responseAccountInfo(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						hideProgressDialog();
+
+						mui.toast(getHttpErrorDesp(type));
+					}
+				});
+			}
+
+			function responseAccountInfo(resp) {
+				console.log(JSON.stringify(resp));
+				
+			}
+			
 		</script>
 	</body>
 

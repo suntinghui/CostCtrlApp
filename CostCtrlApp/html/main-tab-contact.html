@@ -76,8 +76,19 @@
 
 		</div>
 
-		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/constants.js"></script>
+		<script type="text/javascript" src="../js/view.js"></script>
+		<script type="text/javascript" src="../js/util.js"></script>
+		
+		
 		<script type="text/javascript">
+			
+			window.onload = function() {
+				requestStaffMes();
+			};
+			
+			
 			mui('#list').on('tap', 'li', function(e) {
 				mui.plusReady(function() {
 					var subpage_style = {
@@ -91,6 +102,116 @@
 				});
 
 			});
+			
+		</script>
+		
+		<script type="text/javascript">
+			// 获取公司通讯录数据集
+			function requestStaffMes() {
+				checkNetwork();
+				showProgressDialog("正在加载...");
+				
+				var url = getHost() + "action=WapGetStaffMes";
+				mui.ajax(url, {
+					dataType: 'json',
+					type: 'post',
+					timeout: TIMEOUT,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						"userName": window.localStorage.getItem(UserName),
+						'deptId':window.localStorage.getItem(DeptId),
+						'random':getTimestamp()
+					},
+					success: function(data) {
+						hideProgressDialog();
+						
+						responseStaffMes(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						hideProgressDialog();
+
+						mui.toast(getHttpErrorDesp(type));
+					}
+				});
+			}
+			
+			function responseStaffMes(resp) {
+				console.log(JSON.stringify(resp));
+			}
+			
+			// 查询通讯录分组数据集合
+			function requestGroupMes() {
+				checkNetwork();
+				showProgressDialog("正在加载...");
+				
+				var url = getHost() + "action=WapGetAddBookGroupMes";
+				mui.ajax(url, {
+					dataType: 'json',
+					type: 'post',
+					timeout: TIMEOUT,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						"userId": window.localStorage.getItem(UserId),
+						'random':getTimestamp()
+					},
+					success: function(data) {
+						hideProgressDialog();
+						
+						responseGroupMes(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						hideProgressDialog();
+
+						mui.toast(getHttpErrorDesp(type));
+					}
+				});
+			}
+			
+			function responseGroupMes(resp) {
+				console.log(JSON.stringify(resp));
+			}
+			
+			// 查询个人通讯录数据集合
+			function requestPersonMes(groupId) {
+				checkNetwork();
+				showProgressDialog("正在加载...");
+				
+				var url = getHost() + "action=WapGetAddBookGroupMes";
+				mui.ajax(url, {
+					dataType: 'json',
+					type: 'post',
+					timeout: TIMEOUT,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						"userName": window.localStorage.getItem(UserName),
+						"userId": window.localStorage.getItem(UserId),
+						"groupId":groupId,
+						'random':getTimestamp()
+					},
+					success: function(data) {
+						hideProgressDialog();
+						
+						responsePersonMes(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						hideProgressDialog();
+
+						mui.toast(getHttpErrorDesp(type));
+					}
+				});
+			}
+			
+			function responsePersonMes(resp) {
+				console.log(JSON.stringify(resp));
+			}
+			
+			
 			
 		</script>
 

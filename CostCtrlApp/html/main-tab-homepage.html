@@ -28,67 +28,84 @@
 				</div>
 				<!--搜索-->
 				<!--列表-->
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;" id="gotoList">
-							<span class="mui-badge mui-badge-danger" style="position: absolute; left: 40px; right: auto; top: 18px;">1</span>
-							<img class="mui-media-object mui-pull-left" src="../images/icon-notice.png">
-							<div class="mui-media-body">
-								<div>通知<small class="mui-pull-right font-12">刚刚</small></div>
-								<p class='mui-ellipsis'>您有一条新公告</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../images/icon-todo.png">
-							<div class="mui-media-body">
-								<div>待办文件<small class="mui-pull-right font-12">昨天</small></div>
-								<p class='mui-ellipsis'>您有新的待办</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../images/icon-warning.png">
-							<div class="mui-media-body">
-								<div>额度预警<small class="mui-pull-right font-12">11-27</small></div>
-								<p class='mui-ellipsis'>有新的额度预警，请注意查看</p>
-							</div>
-						</a>
-					</li>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../images/icon-task.png">
-							<div class="mui-media-body">
-								<div>新任务<small class="mui-pull-right font-12">11-27</small></div>
-								<p class='mui-ellipsis'>您有一条新任务</p>
-							</div>
-						</a>
-					</li>
-
+				<ul class="mui-table-view" id="contentUL">
 				</ul>
 				<!--列表-->
 			</div>
 		</div>
+		
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/constants.js"></script>
+		<script type="text/javascript" src="../js/view.js"></script>
+		<script type="text/javascript" src="../js/util.js"></script>
 
-		<script type="text/javascript">
-			document.getElementById('gotoList').addEventListener('tap', function() {
-
-				mui.plusReady(function() {
-					var subpage_style = {
-						top: '0px',
-						bottom: '0px'
-					};
-
-					var self = plus.webview.currentWebview();
-					var sub = plus.webview.create('todo-lists.html', 'todo-lists.html', subpage_style);
-					self.append(sub);
-				});
+		<script>
+			
+			window.onload = function() {
+				requestIndexInfo();
 				
-			});
+			};
+			
+			var contentUL = document.getElementById("contentUL");
+			
+			// 查询首页待办提醒
+			function requestIndexInfo() {
+				checkNetwork();
+				showProgressDialog("正在加载...");
+				
+				var url = getHost() + "action=WapIndexPage";
+				mui.ajax(url, {
+					dataType: 'json',
+					type: 'post',
+					timeout: TIMEOUT,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: {
+						'random':getTimestamp()
+					},
+					success: function(data) {
+						hideProgressDialog();
+						
+						responseIndexInfo(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						hideProgressDialog();
+
+						mui.toast(getHttpErrorDesp(type));
+					}
+				});
+			}
+			
+			function responseIndexInfo(resp) {
+				console.log(JSON.stringify(resp));
+				
+				var str = "";
+				for (var i=0; i<resp.msPlate.length; i++) {
+					var info = resp.msPlate[i];
+					str+= '<li class="mui-table-view-cell mui-media">';
+					str+='<a href="javascript:;" id="gotoList">';
+					str+='<span class="mui-badge mui-badge-danger" style="position: absolute; left: 40px; right: auto; top: 18px;">'+info.dayCount+'</span>';
+					str+='<img class="mui-media-object mui-pull-left" src="'+info.BackImage+'">';
+					str+='<div class="mui-media-body">';
+					str+='<div>'+info.PlateName+'<small class="mui-pull-right font-12">'+formatBlankValue(info.cjdatetime)+'</small></div>'
+					str+='<p class="mui-ellipsis">'+info.Description+'</p>';
+					str+='</div></a></li>';	
+				}
+				
+				contentUL.innerHTML = str;
+			}
+			
+			function formatBlankValue(str) {
+				if (str == null || str == undefined)
+					return "";
+					
+				return str;
+			}
+			
 		</script>
+		
+		
 	</body>
 
 </html>
